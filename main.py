@@ -20,6 +20,10 @@ async def read_root():
     with open("index.html", "r", encoding="utf-8") as f:
         return f.read()
 
+@app.head("/")
+def root():
+    return {"status": "ok"}
+
 @app.post("/convert")
 async def convert_images_to_pdf(files: List[UploadFile] = File(...)):
     """
